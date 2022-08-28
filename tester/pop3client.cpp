@@ -15,32 +15,32 @@ Pop3Client::Pop3Client(int port_input, const char *ip_input) : Client(port_input
 
 void Pop3Client::callUserCommand(const std::string &username)
 {
-    this->operator<<(std::string(Commands::USER) + " " + username + endLine);
+    send_f(std::string(Commands::USER) + " " + username + endLine, '\n');
 }
 
 void Pop3Client::callPassCommand(const std::string &password)
 {
-    this->operator<<(std::string(Commands::PASS) + " " + password + endLine);
+    send_f(std::string(Commands::PASS) + " " + password + endLine, '\n');
 }
 
 void Pop3Client::callQuitCommand()
 {
-    this->operator<<(std::string(Commands::QUIT) + endLine);
+    send_f(std::string(Commands::QUIT) + endLine, '\n');
 }
 
 void Pop3Client::callStatCommand()
 {
-    this->operator<<(std::string(Commands::STAT) + endLine);
+    send_f(std::string(Commands::STAT) + endLine, '\n');
 }
 
 void Pop3Client::callListCommand()
 {
-    this->operator<<(std::string(Commands::LIST) + endLine);
+    send_f(std::string(Commands::LIST) + endLine, '\n');
 }
 
 void Pop3Client::callRetrCommand(const int &messageId)
 {
-    this->operator<<(std::string(Commands::RETR) + " " + std::to_string(messageId) + endLine);
+    send_f(std::string(Commands::RETR) + " " + std::to_string(messageId) + endLine, '\n');
 }
 
 std::string Pop3Client::getResponse()
