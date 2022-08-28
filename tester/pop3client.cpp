@@ -7,6 +7,7 @@ const char *endLine = "\r\n";
 
 Pop3Client::Pop3Client(int port_input, const char *ip_input) : Client(port_input, ip_input)
 {
+    set_stop_symbol('\n');
     while(!connectnet());
     if (getResponse() != Responses::OK) {
         throw std::runtime_error("Error while connecting to server!");
