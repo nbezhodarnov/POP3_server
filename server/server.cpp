@@ -11,7 +11,9 @@ Server::Server(int port_input, const char *ip_input, int max_conn): Socket(port_
 	accepted = false; // функции accept
 	
 	// Запуск сервера
-	start();
+    if (!start()) {
+        throw std::runtime_error("Error while starting server!");
+    }
 }
 
 // Деструктор
